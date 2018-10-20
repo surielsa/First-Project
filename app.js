@@ -4,6 +4,47 @@ $( document ).ready(function() {
     console.log( "ready!" );
 });
 
+var queryURL = "https://api.census.gov/data.json";
+var apiKey = "8901e09159129c0ff7f0e9e4e81f5d0249bf26c8"
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response) {
+  console.log(response);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // here is delicious javascript var btn = document.getElementById("fancy-button")
 /*
@@ -78,6 +119,8 @@ thirdobj.onemore()
 newObj.stars();
 
 */
+
+/*
 
 const roads = [
     "Alice's House-Bob's House", "Alice's House-Cabin",
@@ -176,4 +219,4 @@ VillageState.random = function(parcelCount = 5) {
         return new VillageState("Post Office", parcels);
 
     };
-runRobot(VillageState.random(), randomRobot);
+runRobot(VillageState.random(), randomRobot); */
