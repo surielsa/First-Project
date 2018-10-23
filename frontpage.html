@@ -11,7 +11,85 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
         <!--FONT AWESOME-->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">    
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous"> 
+
+     <!--BOOTSTRAP-->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     
+     
+
+     <!DOCTYPE html>
+     <html>
+       <head>
+         <title>Simple Map</title>
+         <meta name="viewport" content="initial-scale=1.0">
+         <meta charset="utf-8">
+         <style>
+           /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+           #map {
+             height: 80%;
+           }
+           /* Optional: Makes the sample page fill the window. */
+         
+         </style>
+       </head>
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Features</a>
+                <a class="nav-item nav-link" href="#">Pricing</a>
+                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+              </div>
+            </div>
+          </nav>
+       <body>
+         <div id="map">
+         <script>
+           var map;
+           function initMap() {
+             map = new google.maps.Map(document.getElementById('map'), {
+               center: {lat: -34.397, lng: 150.644},
+               zoom: 8
+             });
+           }
+         </script>
+         </div>
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIBI-0NauufgkFuzHb0R0XOKb3U1WkuFE&callback=initMap"
+         async defer></script>
+       </body>
+     </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
      <!--CHART JS SCRIPT TAG-->
      <script
@@ -19,7 +97,7 @@
      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
      crossorigin="anonymous"></script>
  
- 
+    
    
  
      <!--JQUERY SCRIPT-->
@@ -27,10 +105,6 @@
      src="https://code.jquery.com/jquery-3.3.1.js"
      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
      crossorigin="anonymous"></script>
-<iframe src="https://createaclickablemap.com/map.php?&id=75468&maplocation=false&online=true" width="900" height="525" style="border: none;"></iframe>
-<script>if (window.addEventListener){ window.addEventListener("message", function(event) { if(event.data.length >= 22) { if( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } else if (window.attachEvent){ window.attachEvent("message", function(event) { if( event.data.length >= 22) { if ( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } </script>
-   
-    
     </html>
                   
         <!--[if lt IE 7]>
