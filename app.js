@@ -1,222 +1,86 @@
-// //waiting for jquery documentation to load
-// /*
-$( document ).ready(function() {
-    console.log( "ready!" );
-});
-
-var queryURL = "https://api.census.gov/data.json";
-var apiKey = "8901e09159129c0ff7f0e9e4e81f5d0249bf26c8"
-
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).then(function(response) {
-  console.log(response);
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// here is delicious javascript var btn = document.getElementById("fancy-button")
-/*
-
-var btn= $("#fancy-button")
-btn.on("click", function({
-    function generateRandos(tellMeNumber){
-        return Math.floor(Math.random()*tellmMeNumber)
-    }
-})
-// btn.addEventListener('click', function(){
-//     console.log("yolo")
-
-// //2nd way
-
-// btn.onclick = function(){
-//     console.log("hey")
-// }
-// */
-// // create a random number 
-// fuction generateRandom() {
-//     return Math.floor(Math.random()*20)
-// } 
-// btn.onclick = function(){
-//     console.log(generateRandoms())
-// }
-
-//var random = Math.floor(Math.random()*20)
-//console.log(random)
-/*
-
-if(true) {
-    //block of code 
-} else if (true) {
-
-} else {
-    //Default 
-}
-
-//can have multifple if statements
-
-//return will stop the code that is running and break out of it.
-
-// only works inside of a function
-
-switch(key) {
-    case value:
-
-    break;
-
-    default:
-    break;
-}
-
-//functions allow us to bundle code and run it at specific moments and times in the progam
-
-// scope. console log where you are to see what is happening. 
-var newObj = {
-    stars: function(){
-        console.log("here", this)
-   
-
-var thirdobj = {
-    onemore: function(){
-        console.log("inside", this)
-    }
-}
-thirdobj.onemore()
-}
-}
-
-newObj.stars();
-
-*/
-
-/*
-
-const roads = [
-    "Alice's House-Bob's House", "Alice's House-Cabin",
-    "Alice's House-Post Office", "Bob's House-Town Hall",
-    "Daria's House-Ernie's House", "Daria's House-Town Hall",
-    "Ernie's House-Grete's House", "Grete's House-Farm",
-    "Grete's House-Shop", "Marketplace-Farm",
-    "Marketplace-Post Office", "Marketplace-Shop",
-    "Marketplace-Town Hall", "Shop-Town Hall"
-];
-
-function buildGraph(edges) {
-    let graph = Object.create(null);
-    function addEdge(from, to) {
-        if (graph[from] == null){
-            graph[from] = [to];
-        } else {
-            graph[from].push(to);
-        }
-    }
-    for (let [from, to] of edges.map(r => r.split("-"))) {
-        addEdge(from, to);
-        addEdge(to, from);
-    }
-    return graph;
-}
-
-const roadGraph = buildGraph(roads);
-
-class VillageState {
-    constructor(place, parcels) {
-        this.place = place;
-        this.parcels = parcels;
-    }
-
-    move(destination) {
-        if (!roadGraph[this.place].includes(destination)) {
-            return this;
-        } else {
-            let parcels = this.parcels.map(p => {
-                if (p.place != this.place) return p;
-                return {place: destination, address: p.address};
-            }).filter(p => p.place != p.address);
-            return new VillageState(destination, parcels);
-        }
-    }
-}
-
-let first = new VillageState(
-    "Post Office",
-    [{place: "Post Office", address: "Alice's House"}]);
-    let next = first.move("Alice's House");
-
-    console.log(next.place);
-
-    console.log(next.parcels);
-
-    console.log(first.place);
-
-
-let object = Object.freeze({value: 5});
-object.value = 10
-console.log(object.value);
-
-function runRobot(state, robot, memory) {
-    for (let turn = 0;; turn++) {
-        if (state.parcels.length == ) {
-            console.log('Done in ${turn} turns');
-            break;
-        }
-    let action = robot(state, memory);
-    state = state.move(action.direction);
-    memory = action.memory;
-    console.log('Moved to ${action.direction}');
-    }
-}
-
-function randomPick(array) {
-    let choice = Math.floor(Math.random() * array.lenght);
-
-}
-function randomRobot(state) {
-    return {direction: randomPick(roadGraph[state.place])};
-}
-
-VillageState.random = function(parcelCount = 5) {
-    let parcels = [];
-    for (let i = 0; i < parcelCOunt; i++) {
-        let address = randomPick(Object.keys(roadGraph));
-        let place;
-        do {
-            place = randomPick(Object.keys(roadGraph));
-        } while (place === address);
-        parcels.push({place, address});
-        }
-        return new VillageState("Post Office", parcels);
-
-    };
-runRobot(VillageState.random(), randomRobot); */
+        $(document).ready(function(){
+            $("#map").show();  
+            $("#showData").hide();
+        }); 
+        
+        var births;
+        var deaths;
+        var birthRateArray = [];
+        var deathRateArray = [];
+        var data = [];
+        var apiResponse;
+
+        var queryURL = "https://api.census.gov/data/2014/pep/natstprc?get=STNAME,POP,BIRTHS,DEATHS,DENSITY,DIVISION&DATE=7&for=state:*&key=01583ab5bf70e73693ce188c438e8e312568ae00";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+            }).then(function(response) {
+                apiResponse = response;
+                console.log(apiResponse);
+        });
+        
+
+        $("#addState").on('click', function(){
+            console.log("Inside functionPOP")
+            $("#map").hide();  
+            $("#showData").show();   
+            var stateInput = $("#stateInput").val().trim();
+            console.log(queryURL);
+            $.each(apiResponse, function(index, value){
+                if(index == 0){
+                    return;
+                }
+                else{
+                    // console.log(value)
+                    var obj = {};
+                    obj.value = value[4];
+                    obj.code = value[0];
+                    data.push(obj);
+                    console.log(obj);
+                    var state = value[0];
+                    var pop = value[1];
+                    births = value[2];
+                    deaths = value[3];
+                    if(stateInput.toLowerCase() === state.toLowerCase()){
+                        //console.log(pop);
+                        $("#showData").text(JSON.stringify("Total Population is: " + pop));
+                        $("#showData").append(JSON.stringify("Total Births are: " + births));
+                        $("#showData").append(JSON.stringify("Total Deaths are: " + deaths));
+                    }
+                }
+            });
+        })
+
+        // function findPOP(){
+        //     console.log("Inside functionPOP")
+        //     $("#map").hide();  
+        //     $("#showData").show();   
+        //     var stateInput = $("#stateInput").val();
+        //     console.log(queryURL);
+        //     $.each(apiResponse, function(index, value){
+        //         if(index == 0){
+        //             return;
+        //         }
+        //         else{
+        //             // console.log(value)
+        //             var obj = {};
+        //             obj.value = value[4];
+        //             obj.code = value[0];
+        //             data.push(obj);
+        //             console.log(obj);
+        //             var state = value[0];
+        //             var pop = value[1];
+        //             births = value[2];
+        //             deaths = value[3];
+        //             if(stateInput.toLowerCase() === state.toLowerCase()){
+        //                 //console.log(pop);
+        //                 $("#showData").text(JSON.stringify("Total Population is: " + pop));
+        //                 $("#showData").append(JSON.stringify("Total Births are: " + births));
+        //                 $("#showData").append(JSON.stringify("Total Deaths are: " + deaths));
+        //             }
+        //         }
+        //     });
+        // }
+        
+        
+        
