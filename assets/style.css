@@ -6,7 +6,7 @@
     background-color: rgb(21, 7, 71);
     color: white;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
 img {
@@ -18,4 +18,12 @@ img {
     width: 100%;
     padding-left: 10%;
 }
-
+#input{
+    color: azure !important;
+}
+.navbar{
+    background-color: #a3498c !important;
+}
+.btn{
+    background-color: #79AFBC !important;
+}
