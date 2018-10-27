@@ -8,16 +8,32 @@
     <title>Map</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+<<<<<<< HEAD
     <link rel="stylesheet" href="style.css">
+=======
+	<link rel="stylesheet" href="assets/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+	<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+	
+	
+>>>>>>> b79b6dc156938926cb349d65a7984711acc52b1d
 </head>
 
-<body style="background-color:#79AFBC">
+<body style="background-color:#e8d5e3">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-primary mt-5">
 
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" id="stateInput" type="text" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" id="addState" type="button">Search</button>
         </form>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
@@ -48,7 +64,7 @@
     </nav>
 
 
-    <div class="container-fluid">
+    <div class="-fluid">
         <div class="row mt-5">
             <div class="col-xl-2 mr-100 border border-primary align-self-start">
                 <ul class="nav flex-column">
@@ -66,6 +82,7 @@
                     </li>
                 </ul>
             </div>
+<<<<<<< HEAD
             <div class="row">
 
                 <div class="col-4">
@@ -73,6 +90,97 @@
                 </div>
             
             </div>
+=======
+            <!-- <div class="row"> -->
+				<div id="dataTableDiv">
+					<table id="dataTable">
+
+					</table>
+				</div>
+				
+				<!-- <div class="col-xl-2"></div> -->
+				<div id="map">
+					<!-- <img height="500px" width="700px" src="assets/img/image (5).png" alt="us-map"> -->
+					<style>
+						#chartdiv {
+						  width: 100%;
+						  height: 500px;
+						}
+					</style>
+					<script>
+						var map = AmCharts.makeChart( "chartdiv", {
+						"type": "map",
+						"theme": "light",
+						
+						  "panEventsEnabled": true,
+						  //"backgroundColor": "#666666",
+						  //"backgroundAlpha": 1,
+						  "dataProvider": {
+							"map": "usaLow",
+							"getAreasFromMap": true
+						  },
+						  "areasSettings": {
+							"autoZoom": false,
+							"color": "#772963",
+							"colorSolid": "#5EB7DE",
+							"selectedColor": "#5EB7DE",
+							"outlineColor": "#666666",
+							"rollOverColor": "#88CAE7",
+							"rollOverOutlineColor": "#FFFFFF",
+							"selectable": true
+						  },
+						  "listeners": [ {
+							"event": "clickMapObject",
+							"method": function( event ) {
+							  // deselect the area by assigning all of the dataProvider as selected object
+							  map.selectedObject = map.dataProvider;
+						
+							  // toggle showAsSelected
+							  event.mapObject.showAsSelected = !event.mapObject.showAsSelected;
+						
+							  // bring it to an appropriate color
+							  map.returnInitialColor( event.mapObject );
+						
+							  // let's build a list of currently selected states
+							  var states = [];
+							  for ( var i in map.dataProvider.areas ) {
+								var area = map.dataProvider.areas[ i ];
+								if ( area.showAsSelected ) {
+								  states.push( area.title );
+								}
+							  }
+							  $("#dataTable").empty();
+							  $.each(apiResponse, function(index, value){
+
+							  	if(index == 0){
+                   					return;
+								}
+								else{
+									if(states.indexOf(value[0]) >= 0){
+										var state = value[0];
+										var pop = value[1];
+										var birth = value[2];
+										var death = value[3];
+
+										var row = "<tr>" + "<td>" + state + "</td>"
+												  + "<td>" + pop + "</td>" 
+												  + "<td>" + birth + "</td>"
+												  + "<td>" + death + "</td>"
+												  + "</tr>";
+										$("#dataTable").append(row);
+									}
+								}
+							  });
+							}
+						  } ],
+						  "export": {
+							"enabled": true
+						  }
+						} );
+						</script>
+				</div>
+            <!-- </div> -->
+>>>>>>> b79b6dc156938926cb349d65a7984711acc52b1d
 
             <div class="row">
 
@@ -83,13 +191,14 @@
 
 
         </div>
-
+		<!-- <div id="showData"></div> -->
+		<div id="chartdiv"></div>
     </div>
 
     </div>
 
 
-
+	
 
 
 
@@ -99,13 +208,16 @@
 
 
 
-
+<!-- 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="./app.js"></script>
+		
 </body>
 
 </html>
