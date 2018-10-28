@@ -1,7 +1,22 @@
 $(document).ready(function(){
-$("#map").show();  
-$("#showData").hide();
+// $("#map").show();  
+// $("#showData").hide();
+interval = setInterval(startTicker, 3000);
+interval1 = setInterval(getNews, 60000);
+$("#newsNew").hover(function(){
+    stopTicker();
+}, 
+function(){
+    interval = setInterval(startTicker, 3000);
+})
 }); 
+
+function blinker() {
+    $('.blink_me').fadeOut(500);
+    $('.blink_me').fadeIn(500);
+}
+
+setInterval(blinker, 1000);
 
 var births;
 var deaths;
@@ -20,63 +35,51 @@ url: queryURL,
 method: "GET"
 }).then(function(response) {
     apiResponse = response;
-    console.log(apiResponse);
 });
-// console.log(apiResponse);
 
 $.when( $.ajax( query ) ).then(function( data, textStatus, jqXHR ) {
-    // alert( jqXHR.status ); // Alerts 200
-    console.log(data);
     afterResponse(data);
 });
-// $.ajax({
-// url: query,
-// method: "GET"
-// }).then(function(response1){
-//     queryResponse = response1;
-//     console.log(queryResponse);
-// });
-// console.log(response1);
 function afterResponse(queryResponse){
-$.each(queryResponse.articles, function(index, value){
-    
+    $("#newsNew").empty();
+    $.each(queryResponse.articles, function(index, value){
         var obj1 = value.description;
         console.log(obj1);
         articles.push(obj1);
+        var list = "<li class='list'>" + obj1 + "</li>";
+        $("#newsNew").append(list);
 })
 console.log(articles);
 }
 
-$("#addState").on('click', function(){
-console.log("Inside functionPOP")
-$("#map").hide();  
-$("#showData").show();   
-var stateInput = $("#stateInput").val().trim();
-console.log(queryURL);
-$.each(apiResponse, function(index, value){
-    if(index == 0){
-        return;
-    }
-    else{
-        // console.log(value)
-        var obj = {};
-        obj.value = value[4];
-        obj.code = value[0];
-        data.push(obj);
-        console.log(obj);
-        var state = value[0];
-        var pop = value[1];
-        births = value[2];
-        deaths = value[3];
-        if(stateInput.toLowerCase() === state.toLowerCase()){
-            //console.log(pop);
-            $("#showData").text(JSON.stringify("Total Population is: " + pop));
-            $("#showData").append(JSON.stringify("Total Births are: " + births));
-            $("#showData").append(JSON.stringify("Total Deaths are: " + deaths));
-        }
-    }
-});
-})
+// $("#addState").on('click', function(){
+// console.log("Inside functionPOP")
+// $("#map").hide();  
+// $("#showData").show();   
+// var stateInput = $("#stateInput").val().trim();
+// console.log(queryURL);
+// $.each(apiResponse, function(index, value){
+//     if(index == 0){
+//         return;
+//     }
+//     else{
+//         var obj = {};
+//         obj.value = value[4];
+//         obj.code = value[0];
+//         data.push(obj);
+//         console.log(obj);
+//         var state = value[0];
+//         var pop = value[1];
+//         births = value[2];
+//         deaths = value[3];
+//         if(stateInput.toLowerCase() === state.toLowerCase()){
+//             $("#showData").text(JSON.stringify("Total Population is: " + pop));
+//             $("#showData").append(JSON.stringify("Total Births are: " + births));
+//             $("#showData").append(JSON.stringify("Total Deaths are: " + deaths));
+//         }
+//     }
+// });
+// })
 
 
 var map = AmCharts.makeChart( "chartdiv", {
@@ -84,8 +87,6 @@ var map = AmCharts.makeChart( "chartdiv", {
 "theme": "black",
 
 "panEventsEnabled": true,
-//"backgroundColor": "#666666",
-//"backgroundAlpha": 1,
 "dataProvider": {
 "map": "usaLow",
 "getAreasFromMap": true
@@ -103,16 +104,11 @@ var map = AmCharts.makeChart( "chartdiv", {
 "listeners": [ {
 "event": "clickMapObject",
 "method": function( event ) {
-    // deselect the area by assigning all of the dataProvider as selected object
     map.selectedObject = map.dataProvider;
-
-    // toggle showAsSelected
     event.mapObject.showAsSelected = !event.mapObject.showAsSelected;
 
-    // bring it to an appropriate color
     map.returnInitialColor( event.mapObject );
 
-    // let's build a list of currently selected states
     var states = [];
     for ( var i in map.dataProvider.areas ) {
     var area = map.dataProvider.areas[ i ];
@@ -149,37 +145,19 @@ var map = AmCharts.makeChart( "chartdiv", {
 }
 });
 
+function startTicker(){
+    $("#newsNew li:first").slideUp(function(){
+        $(this).appendTo($("#newsNew")).slideDown();
+    });
+}
 
-// function findPOP(){
-//     console.log("Inside functionPOP")
-//     $("#map").hide();  
-//     $("#showData").show();   
-//     var stateInput = $("#stateInput").val();
-//     console.log(queryURL);
-//     $.each(apiResponse, function(index, value){
-//         if(index == 0){
-//             return;
-//         }
-//         else{
-//             // console.log(value)
-//             var obj = {};
-//             obj.value = value[4];
-//             obj.code = value[0];
-//             data.push(obj);
-//             console.log(obj);
-//             var state = value[0];
-//             var pop = value[1];
-//             births = value[2];
-//             deaths = value[3];
-//             if(stateInput.toLowerCase() === state.toLowerCase()){
-//                 //console.log(pop);
-//                 $("#showData").text(JSON.stringify("Total Population is: " + pop));
-//                 $("#showData").append(JSON.stringify("Total Births are: " + births));
-//                 $("#showData").append(JSON.stringify("Total Deaths are: " + deaths));
-//             }
-//         }
-//     });
-// }
+function stopTicker()
+{
+    clearInterval(interval);
+}
 
-        
-        
+function getNews(){
+    $.when( $.ajax( query ) ).then(function( data, textStatus, jqXHR ) {
+        afterResponse(data);
+    });
+}
