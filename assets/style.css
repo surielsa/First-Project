@@ -27,3 +27,29 @@ img {
 .btn{
     background-color: #79AFBC !important;
 }
+#chartdiv {
+    width: 100%;
+    height: 500px;
+}
+#news{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: justify;
+    height: 400px;
+    overflow: hidden;
+}
+#newsNew{
+    list-style-type: none;
+    padding: 10px;
+    
+}
+.list{
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+}
+.blink_me{
+    background-color: #a3498c;
+}
+				
