@@ -23,9 +23,9 @@
 	
 </head>
 
-<body style="background-color:#e8d5e3">
+<body style="background-color:#4b5257">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
 
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" id="stateInput" type="text" placeholder="Search" aria-label="Search">
@@ -60,7 +60,7 @@
     </nav>
 
 
-    <div class="-fluid">
+    <!-- <div class="-fluid">
         <div class="row mt-5">
             <div class="col-xl-2 mr-100 border border-primary align-self-start">
                 <ul class="nav flex-column">
@@ -77,13 +77,30 @@
                         <a class="nav-link disabled" href="#">Source</a>
                     </li>
                 </ul>
-            </div>
-            <!-- <div class="row"> -->
-				<div id="dataTableDiv">
-					<table id="dataTable">
+            </div> -->
 
-					</table>
-				</div>
+
+            <!-- <div class="row"> -->
+
+                <div class="row p-2">
+                    <div class="col table-bordered border-danger p-3">
+                            <div id="dataTableDiv">
+                                    <table id="dataTable">
+                
+                                    </table>
+                                </div>
+                    </div>
+                    <div class="col-6">
+                            <div id="chartdiv"></div>
+                    </div>
+                    <div class="col p-5 border border-danger">
+                        <img width="200px" height="400px" src="assets/img/statistic.jpg" alt="statistic">
+                    </div>
+
+                </div>
+
+
+				
 				
 				<!-- <div class="col-xl-2"></div> -->
 				<div id="map">
@@ -92,6 +109,7 @@
 						#chartdiv {
 						  width: 100%;
 						  height: 500px;
+                          padding-top: 50px; 
 						}
 					</style>
 					<script>
@@ -108,7 +126,7 @@
 						  },
 						  "areasSettings": {
 							"autoZoom": false,
-							"color": "#772963",
+							"color": "black",
 							"colorSolid": "#5EB7DE",
 							"selectedColor": "#5EB7DE",
 							"outlineColor": "#666666",
@@ -168,17 +186,12 @@
 				</div>
             <!-- </div> -->
 
-            <div class="row">
-
-                    <div class="col-12 ml-5 border border-primary d-flex flex-row-reverse">
-                    </div>
-                
-                </div>
+           
 
 
         </div>
 		<!-- <div id="showData"></div> -->
-		<div id="chartdiv"></div>
+		
     </div>
 
     </div>
@@ -188,8 +201,8 @@
 
 
 
-    <div style="background-color:#37388E" class="footer">
-        <p>Footer</p>
+    <div style="background-color:#5a5151" class="footer">
+        <p>&copy; Copyright 2018 </p>
     </div>
 
 
