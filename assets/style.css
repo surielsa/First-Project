@@ -22,7 +22,7 @@ img {
     color: rgb(5, 71, 71) !important;
 }
 .navbar{
-    background-color: #5c49a3 !important;
+    background-color: #4d4a57 !important;
 }
 .btn{
     background-color: #79AFBC !important;
@@ -30,6 +30,15 @@ img {
 #chartdiv {
     width: 100%;
     height: 500px;
+}
+#news1{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: justify;
+    height: 400px;
+    overflow: hidden;
 }
 #news{
     border: 2px solid black;
@@ -40,6 +49,8 @@ img {
     height: 400px;
     overflow: hidden;
 }
+
+
 #newsNew{
     list-style-type: none;
     padding: 10px;
