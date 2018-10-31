@@ -3,7 +3,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgb(21, 7, 71);
+    background-color: black !important;
     color: white;
     text-align: center;
     margin-bottom: 0px;
@@ -22,7 +22,7 @@ img {
     color: rgb(5, 71, 71) !important;
 }
 .navbar{
-    background-color: #5c49a3 !important;
+    background-color: black !important;
 }
 .btn{
     background-color: #79AFBC !important;
@@ -30,6 +30,17 @@ img {
 #chartdiv {
     width: 100%;
     height: 500px;
+}
+#news1{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: justify;
+    height: 400px;
+    overflow: hidden;
+    overflow-y:scroll;
+    scrollbar-arrow-color: black;
 }
 #news{
     border: 2px solid black;
@@ -39,17 +50,30 @@ img {
     text-align: justify;
     height: 400px;
     overflow: hidden;
+    
 }
 #newsNew{
     list-style-type: none;
     padding: 10px;
     
 }
-.list{
-    border-bottom: 2px solid black;
-    margin-bottom: 10px;
-}
 .blink_me{
     background-color: #a3498c;
 }
-				
+body{
+    width: 99%;
+}			
+#dataTable tr td{
+    border: 1px solid black;
+}
+#newsNew li{
+    font-family: 'Times New Roman', Times, serif;
+    border-bottom: 2px solid black;
+}
+#leftData{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+#selectState{
+    background-color: rgb(139, 136, 139);
+}

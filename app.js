@@ -15,9 +15,13 @@ function blinker() {
     $('.blink_me').fadeOut(500);
     $('.blink_me').fadeIn(500);
 }
+function testEvent() {
+    map.clickMapObject(map.dataProvider);
+  }
 
 setInterval(blinker, 1000);
 
+var stateInput;
 var births;
 var deaths;
 var birthRateArray = [];
@@ -52,34 +56,11 @@ function afterResponse(queryResponse){
 console.log(articles);
 }
 
-// $("#addState").on('click', function(){
-// console.log("Inside functionPOP")
-// $("#map").hide();  
-// $("#showData").show();   
-// var stateInput = $("#stateInput").val().trim();
-// console.log(queryURL);
-// $.each(apiResponse, function(index, value){
-//     if(index == 0){
-//         return;
-//     }
-//     else{
-//         var obj = {};
-//         obj.value = value[4];
-//         obj.code = value[0];
-//         data.push(obj);
-//         console.log(obj);
-//         var state = value[0];
-//         var pop = value[1];
-//         births = value[2];
-//         deaths = value[3];
-//         if(stateInput.toLowerCase() === state.toLowerCase()){
-//             $("#showData").text(JSON.stringify("Total Population is: " + pop));
-//             $("#showData").append(JSON.stringify("Total Births are: " + births));
-//             $("#showData").append(JSON.stringify("Total Deaths are: " + deaths));
-//         }
-//     }
-// });
-// })
+$("#addState").on('click', function(){
+stateInput = $('#selectState').find(":selected").val();;
+map.clickMapObject(map.getObjectById(stateInput));
+
+});
 
 
 var map = AmCharts.makeChart( "chartdiv", {
@@ -93,7 +74,7 @@ var map = AmCharts.makeChart( "chartdiv", {
 },
 "areasSettings": {
 "autoZoom": false,
-"color": "#772963",
+"color": "black",
 "colorSolid": "#5EB7DE",
 "selectedColor": "#5EB7DE",
 "outlineColor": "#666666",
@@ -104,6 +85,7 @@ var map = AmCharts.makeChart( "chartdiv", {
 "listeners": [ {
 "event": "clickMapObject",
 "method": function( event ) {
+
     map.selectedObject = map.dataProvider;
     event.mapObject.showAsSelected = !event.mapObject.showAsSelected;
 
@@ -144,6 +126,20 @@ var map = AmCharts.makeChart( "chartdiv", {
 "enabled": true
 }
 });
+// map.updateSelection = function() {
+//     var areas = [];
+//     // jQuery(".section-map-list input:checked").each(function() {
+//     //   var CC = this.value;
+
+//       areas.push({
+//         id: stateInput,
+//         showAsSelected: true
+//       });
+//    // });
+//     map.dataProvider.areas = areas;
+//     map.validateData();
+//     return areas;
+//   }
 
 function startTicker(){
     $("#newsNew li:first").slideUp(function(){
