@@ -55,6 +55,19 @@
 
         </div>
     </nav>
+<<<<<<< HEAD
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<table>
+					
+							<td>State</td>
+							<td>POP</td>
+							<td>Births</td>
+							<td>Deaths</td>
+						
+						<tbody id="dataTable">
+=======
     <div class="container-fluid m-2">
         <div class="row pt-5">
             <div id="news1" class="col-md-3">
@@ -79,6 +92,7 @@
             </div>
         </div>
     </div>
+>>>>>>> 9078fb89899a53b3d05cadfa28b062291ec45ebe
 
     <div id="showData"></div>
 
