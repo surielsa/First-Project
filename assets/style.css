@@ -75,6 +75,8 @@ body{
 #leftData{
     font-family: 'Times New Roman', Times, serif;
     text-align: center;
+    height: 50px;
+    color: white;
 }
 #selectState{
     background-color: rgb(139, 136, 139);
