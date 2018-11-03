@@ -57,9 +57,10 @@ console.log(articles);
 }
 
 $("#addState").on('click', function(){
-stateInput = $('#selectState').find(":selected").val();;
-map.clickMapObject(map.getObjectById(stateInput));
-
+    stateInput = $('#selectState').find(":selected").val();;
+    map.clickMapObject(map.getObjectById(stateInput));
+    //make select value as empty.
+    $('#selectState option[value=""]').attr('selected','selected');
 });
 
 
@@ -110,7 +111,6 @@ var map = AmCharts.makeChart( "chartdiv", {
             var pop = value[1];
             var birth = value[2];
             var death = value[3];
-
             var row = "<tr>" + "<td>" + state + "</td>"
                         + "<td>" + pop + "</td>" 
                         + "<td>" + birth + "</td>"
@@ -126,20 +126,6 @@ var map = AmCharts.makeChart( "chartdiv", {
 "enabled": true
 }
 });
-// map.updateSelection = function() {
-//     var areas = [];
-//     // jQuery(".section-map-list input:checked").each(function() {
-//     //   var CC = this.value;
-
-//       areas.push({
-//         id: stateInput,
-//         showAsSelected: true
-//       });
-//    // });
-//     map.dataProvider.areas = areas;
-//     map.validateData();
-//     return areas;
-//   }
 
 function startTicker(){
     $("#newsNew li:first").slideUp(function(){
