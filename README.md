@@ -1,4 +1,4 @@
-# o Place Like Home!		
+# No Place Like Home!		
 A demographic survey of the USA based on the 2014 Census.  built with love by Saran, Murat, Sal, and Jon
 
 
